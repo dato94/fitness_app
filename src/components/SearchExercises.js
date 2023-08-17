@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 
 import { exerciseOptions, fetchData } from '../utils/fetchData'
+import HorizontalScrollbar from './HorizontalScrollbar'
 
 const SearchExercises = () => {
 
@@ -23,7 +24,7 @@ const SearchExercises = () => {
     if(search) {
       const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises', exerciseOptions);
 
-      const SearchedExercises = exercisesData.filter(
+      const searchedExercises = exercisesData.filter(
         (exercise) => exerciseOptions.name.toLowerCase().includes(search)
         || exerciseOptions.target.toLowerCase().includes(search)
         || exerciseOptions.equipment.toLowerCase().includes(search)
@@ -31,7 +32,7 @@ const SearchExercises = () => {
       );
 
       setSearch("");
-      setEcercises(SearchedExercises);
+      setEcercises(searchedExercises);
     }
   }
 
